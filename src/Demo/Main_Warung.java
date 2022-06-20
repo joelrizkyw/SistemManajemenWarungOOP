@@ -1,8 +1,12 @@
 package Demo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
+import Database.Connect;
 import Model.Penjual_Warung;
+import Model.Penjualan_Warung;
 import Model.Produk_Warung;
 
 public class Main_Warung {
@@ -145,6 +149,31 @@ public class Main_Warung {
         
         scan.close();
     }
+    
+    //Lihat transaksi penjualan
+    public ArrayList<Penjualan_Warung> getPenjualan(){
+    	ArrayList<Penjualan_Warung> penjualan = new ArrayList<>();
+    	try {
+			String query = "SELECT `id_pelanggan`, `id_produk`, `jumlah_produk`, `tanggal_pembelian`"
+					+ "FROM `Penjualan`";
+			ResultSet res = Connect.getConnection().executeQuery(query);
+			String id_pelanggan, id_produk, tanggal_pembelian;
+			Integer jumlah_produk;
+			while(res.next()) {
+				id_pelanggan = res.getString("id_pelanggan");
+				id_produk = res.getString("id_produk");
+				jumlah_produk = res.getInt("jumlah_produk");
+				tanggal_pembelian = res.getString("tanggal_pembelian");
+				penjualan.add(new Penjualan_Warung(id_pelanggan, id_produk, jumlah_produk, tanggal_pembelian));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return penjualan;
+    }
+    
+    
 
     public static void main(String[] args) {
     	
