@@ -33,28 +33,10 @@ public class Penjual_Warung {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public String generateId() {
-		
-		String id = "A";
-		int min = 0;
-		int max = 9;
-		
-		Random random = new Random();
-		
-		int num1 = random.nextInt((max - min) + 1) + min;
-		int num2 = random.nextInt((max - min) + 1) + min;
-		int num3 = random.nextInt((max - min) + 1) + min;
-		
-		// A098
-		id = id + num1 + num2 + num3;
-		
-		return id;
-	}
     
 	public void setDataPenjual() {
 		
-		setId_penjual(generateId());
+		setId_penjual("A001");
 		setUsername("admin");
 		setPassword("admin1234");
 		
