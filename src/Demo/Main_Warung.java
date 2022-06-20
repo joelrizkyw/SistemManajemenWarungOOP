@@ -2,8 +2,8 @@ package Demo;
 
 import java.util.*;
 
-import Class.Penjual_Warung;
-import Class.Produk_Warung;
+import Model.Penjual_Warung;
+import Model.Produk_Warung;
 
 public class Main_Warung {
  

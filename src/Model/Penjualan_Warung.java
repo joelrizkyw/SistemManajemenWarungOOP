@@ -1,4 +1,4 @@
-package Class;
+package Model;
 
 public class Penjualan_Warung {
 	
