@@ -173,6 +173,13 @@ public class Main_Warung {
     	return penjualan;
     }
     
+    //tambah data penjualan
+    public void insertDataPenjualan(String id_pelanggan, String id_produk, Integer jumlah_produk, String tanggal_pembelian) {
+    	String query = String.format("INSERT INTO `Penjualan`(`id_pelanggan`, `id_produk`, `jumlah_produk`, `tanggal_pembelian`) "
+    			+ "VALUES ('%s','%s','%d','%s')", id_pelanggan, id_produk, jumlah_produk, tanggal_pembelian);
+    	Connect.getConnection().executeUpdate(query);
+    }
+    
     
 
     public static void main(String[] args) {
