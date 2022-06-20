@@ -1,5 +1,6 @@
 package Model;
 
+
 public class Penjualan_Warung {
 	
 	private String id_penjualan, id_produk, id_pelanggan, tgl_pembelian;
