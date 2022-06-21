@@ -138,7 +138,7 @@ public class Produk_Warung {
 	   System.out.println();
 	}
 	
-	public void load_produk()
+	public void data_produk()
 	{
 		String id_produk;
 		String nama_produk;
@@ -187,35 +187,12 @@ public class Produk_Warung {
 			int i = 0;
 			for(Produk_Warung  produk : produkList)
 			{
-				System.out.printf("| %d | %s | %s | %d | %f1 | %s |", i+1, produk.getId_produk(), produk.getNama_produk(), produk.getStok_produk(), produk.getHarga_produk(), produk.getTanggal_expired());
+				System.out.printf("| %d | %s | %s | %d | %f | %s | \n", i+1, produk.getId_produk(), produk.getNama_produk(), produk.getStok_produk(), produk.getHarga_produk(), produk.getTanggal_expired());
+				i++;
 			}
+			scan.nextLine();
 		}
 	}	
 	
-	public void lihat_penjual()
-	{
-		System.out.println("Lihat Penjualan");
-	    System.out.println("===========================");
-		
-		if(produkList.isEmpty())
-		{
-			System.out.println("List Produk Kosong");
-			System.out.println("Tekan enter untuk lanjut..."); 
-			scan.nextLine();
-		}
-		
-		else
-		{
-			
-			for(int i=0; i < produkList.size(); i++)
-			{
-				System.out.println("ID Produk: " + produkList.get(i).getId_produk());
-				System.out.println("Nama Produk: " + produkList.get(i).getNama_produk());
-				System.out.println("Stok Produk: " + produkList.get(i).getStok_produk());
-				System.out.println("Harga Produk: " + produkList.get(i).getHarga_produk());
-				System.out.println("Tanggal Expired: " + produkList.get(i).getTanggal_expired());
-				System.out.println();
-			}
-		}
-	}
+
 }
