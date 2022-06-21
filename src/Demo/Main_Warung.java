@@ -184,9 +184,30 @@ public class Main_Warung {
     	
     }
     
-    public String generate_pembeli_id()
+    
+    
+    public static String generate_pembeli_id()
     {
-    	return "K" + r.nextInt(9) + r.nextInt(9) + r.nextInt(9);
+  	  String next_id_pelanggan = null;
+  	  
+  	  try {
+  		  
+  	   String query = "SELECT id_pelanggan FROM pelanggan \r\n" + 
+  	     "ORDER BY id_pelanggan DESC LIMIT 1";
+  	   ResultSet res = Connect.getConnection().executeQuery(query);
+  	   
+  	   if(res.next()) {
+  	    next_id_pelanggan = res.getString("id_pelanggan");
+  	    Integer idInt = Integer.parseInt(next_id_pelanggan.substring(1)) + 1; // K001
+  	    next_id_pelanggan = String.format("K%03d", idInt);
+  	   }else {
+  		   next_id_pelanggan = "K001";
+  	   }
+  	  } catch (SQLException e) {
+  	   // TODO Auto-generated catch block
+  	   e.printStackTrace();
+  	  }
+  	  return next_id_pelanggan;
     }
 	
     public Main_Warung() {
@@ -223,6 +244,6 @@ public class Main_Warung {
     public static void main(String[] args) {
     	
     	// Test komentar buat github
-        new Main_Warung();
+        System.out.println("Test");
     }
 }
