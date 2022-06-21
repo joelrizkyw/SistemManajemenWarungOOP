@@ -159,7 +159,7 @@ public class Produk_Warung {
     		    harga_produk = rs.getFloat("harga_produk");
     		    tanggal_expired = rs.getString("tanggal_expired");
     		    
-    		    produkList.add(new Produk_Warung());
+    		    produkList.add(new Produk_Warung(id_produk, nama_produk, stok_produk, harga_produk, tanggal_expired));
     		}
     		}catch (SQLException e) {
     	    	e.printStackTrace();
