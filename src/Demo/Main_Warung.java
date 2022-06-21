@@ -3,11 +3,13 @@ package Demo;
 import java.util.*;
 
 import Database.Connect;
+import Model.Pelanggan_Warung;
 import Model.Penjual_Warung;
 import Model.Produk_Warung;
 
 public class Main_Warung {
  
+	ArrayList<Pelanggan_Warung> pw = new ArrayList<>();
     Scanner scan = new Scanner(System.in);
     Random r = new Random();
     
@@ -122,13 +124,19 @@ public class Main_Warung {
     	String nama_pembeli;
     	
     	do {
-			System.out.println("Masukkan nama: ");
+			System.out.print("Masukkan nama: ");
 			nama_pembeli = scan.nextLine();
 		} while (nama_pembeli.length() <= 0);
     	
     	Connect c = Connect.getConnection();
     	String query = String.format("insert into pelanggan values ('%s', '%s')", generate_pembeli_id(), nama_pembeli);
     	c.executeUpdate(query);
+    	
+    	System.out.println("=============");
+    	System.out.println("Data anda:");
+    	System.out.println("=============");
+    	System.out.println("ID Pembeli: " + generate_pembeli_id());
+    	System.out.println("Nama: " + nama_pembeli);
     }
     
     public String generate_pembeli_id()
