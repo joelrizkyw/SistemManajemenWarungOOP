@@ -44,7 +44,7 @@ public class Main_Warung {
     	String password = "";
     	
     	Penjual_Warung penjual = new Penjual_Warung();
-    	Produk_Warung produk = new Produk_Warung();
+    	Produk_Warung produk = new Produk_Warung(password, password, input, input, password);
     	
     	penjual.setDataPenjual();
     	

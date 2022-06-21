@@ -17,9 +17,20 @@ public class Produk_Warung {
 	private int stok_produk;
 	private float harga_produk;
 	private String tanggal_expired;
+  
+	
+	
 
-	public ArrayList<Produk_Warung> getProdukList() {
-		return produkList;
+
+
+	public Produk_Warung(String id_produk, String nama_produk, int stok_produk, float harga_produk,
+			String tanggal_expired) {
+		super();
+		this.id_produk = id_produk;
+		this.nama_produk = nama_produk;
+		this.stok_produk = stok_produk;
+		this.harga_produk = harga_produk;
+		this.tanggal_expired = tanggal_expired;
 	}
 
 	public void setProdukList(ArrayList<Produk_Warung> produkList) {
@@ -159,7 +170,7 @@ public class Produk_Warung {
     		    harga_produk = rs.getFloat("harga_produk");
     		    tanggal_expired = rs.getString("tanggal_expired");
     		    
-    		    produkList.add(new Produk_Warung(id_produk, nama_produk, stok_produk, harga_produk, tanggal_expired));
+    		    produkList.add(new Produk_Warung( id_produk, nama_produk, stok_produk, harga_produk, tanggal_expired));
     		}
     		}catch (SQLException e) {
     	    	e.printStackTrace();
@@ -169,7 +180,7 @@ public class Produk_Warung {
 	public void lihat_produk()
 	{
 		
-		
+		load_produk();
 		
 		System.out.println("Lihat Produk");
 	    System.out.println("=================================================================================");
@@ -187,7 +198,7 @@ public class Produk_Warung {
 			int i = 0;
 			for(Produk_Warung  produk : produkList)
 			{
-				System.out.printf("| %d | %s | %s | %d | %f1 | %s |", i+1, produk.getId_produk(), produk.getNama_produk(), produk.getStok_produk(), produk.getHarga_produk(), produk.getTanggal_expired());
+				System.out.printf("| %d | %s | %s | %d | %f1 | %s | \n", i+1, produk.getId_produk(), produk.getNama_produk(), produk.getStok_produk(), produk.getHarga_produk(), produk.getTanggal_expired());
 			}
 		}
 	}	
