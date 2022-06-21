@@ -2,12 +2,14 @@ package Demo;
 
 import java.util.*;
 
+import Database.Connect;
 import Model.Penjual_Warung;
 import Model.Produk_Warung;
 
 public class Main_Warung {
  
     Scanner scan = new Scanner(System.in);
+    Random r = new Random();
     
 
 	public void showMenuUtama() {
@@ -114,6 +116,25 @@ public class Main_Warung {
     public void showPembeliMenu() {
 
     }
+    
+    public void loginPembeli()
+    {
+    	String nama_pembeli;
+    	
+    	do {
+			System.out.println("Masukkan nama: ");
+			nama_pembeli = scan.nextLine();
+		} while (nama_pembeli.length() <= 0);
+    	
+    	Connect c = Connect.getConnection();
+    	String query = String.format("insert into pelanggan values ('%s', '%s')", generate_pembeli_id(), nama_pembeli);
+    	c.executeUpdate(query);
+    }
+    
+    public String generate_pembeli_id()
+    {
+    	return "K" + r.nextInt(9) + r.nextInt(9) + r.nextInt(9);
+    }
 	
     public Main_Warung() {
 
@@ -135,7 +156,7 @@ public class Main_Warung {
                     break;
                 case 2:
     
-                    //loginPembeli();
+                    loginPembeli();
                     break;
             }
             
