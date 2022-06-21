@@ -10,11 +10,12 @@ public class Penjualan_Warung {
 		
 	}
 
-	public Penjualan_Warung(String id_pelanggan, String id_produk, int jumlah_produk) {
+	public Penjualan_Warung(String id_pelanggan, String id_produk, int jumlah_produk, String tgl_pembelian) {
 		super();
 		this.id_pelanggan = id_pelanggan;
 		this.id_produk = id_produk;
 		this.jumlah_produk = jumlah_produk;
+		this.tgl_pembelian = tgl_pembelian;
 	}
 
 	public String getId_pelanggan() {
@@ -39,6 +40,14 @@ public class Penjualan_Warung {
 
 	public void setJumlah_produk(int jumlah_produk) {
 		this.jumlah_produk = jumlah_produk;
+	}
+
+	public String getTgl_pembelian() {
+		return tgl_pembelian;
+	}
+
+	public void setTgl_pembelian(String tgl_pembelian) {
+		this.tgl_pembelian = tgl_pembelian;
 	}
 	
 	
