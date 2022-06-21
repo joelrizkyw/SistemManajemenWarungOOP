@@ -6,5 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Diva/BINUS/Diva - Materi Kuliah/Semester 4/Object Oriented Programming/OOP LAB/UAP OOP/2022-06-18 Saturday_4_COMP6708001-Object Oriented Programming/mysql-connector-java-8.0.24.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
