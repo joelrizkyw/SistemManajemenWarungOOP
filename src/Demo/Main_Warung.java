@@ -1,5 +1,7 @@
 package Demo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 import Database.Connect;
@@ -119,6 +121,46 @@ public class Main_Warung {
 
     }
     
+    public void lihat_pembeli()
+    {
+    	int i = 0;
+    	
+    	load_pembeli();
+    	
+    	System.out.println("==============");
+    	System.out.println("LIST PEMBELI");
+    	System.out.println("==============");
+    	for (Pelanggan_Warung pw_var : pw) {
+    		System.out.println("No. " + (i+1));
+			System.out.println("ID Pembeli: " + pw_var.getId_pelanggan());
+			System.out.println("Nama pembeli: " + pw_var.getNama_pelanggan());
+			System.out.println("");
+			i++;
+		}
+    }
+    
+    public void load_pembeli()
+    {
+    	String id_pembeli, nama_pembeli;
+    	
+    	Connect c = Connect.getConnection();
+    	String query = "select * from pelanggan";
+    	ResultSet rs = c.executeQuery(query);
+    	
+    	try {
+			while(rs.next())
+			{
+				id_pembeli = rs.getString("id_pelanggan");
+				nama_pembeli = rs.getString("nama_pelanggan");
+				
+				pw.add(new Pelanggan_Warung(id_pembeli, nama_pembeli));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
     public void loginPembeli()
     {
     	String nama_pembeli;
@@ -132,11 +174,14 @@ public class Main_Warung {
     	String query = String.format("insert into pelanggan values ('%s', '%s')", generate_pembeli_id(), nama_pembeli);
     	c.executeUpdate(query);
     	
-    	System.out.println("=============");
+    	System.out.println("\n=============");
     	System.out.println("Data anda:");
     	System.out.println("=============");
     	System.out.println("ID Pembeli: " + generate_pembeli_id());
     	System.out.println("Nama: " + nama_pembeli);
+    	
+//    	lihat_pembeli();
+    	
     }
     
     public String generate_pembeli_id()
