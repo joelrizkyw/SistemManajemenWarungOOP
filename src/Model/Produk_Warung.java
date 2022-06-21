@@ -196,7 +196,7 @@ public class Produk_Warung {
 		id_produk = scan.nextLine();
 		
 		Connect con = Connect.getConnection();
-		String query = String.format("DELETE FROM produk WHERE Tid_produk = '%s'", id_produk);
+		String query = String.format("DELETE FROM produk WHERE id_produk = '%s'", id_produk);
 		con.executeUpdate(query);
 		
 		System.out.println("Produk berhasil dihapus");
@@ -259,30 +259,18 @@ public class Produk_Warung {
 	}	
 	
 	
-	public void lihat_penjual()
+	public void cari_produk()
 	{
-		System.out.println("Lihat Penjualan");
-	    System.out.println("===========================");
+		String nama_produk;
+		System.out.println("Ketik nama produk yang Ingin dicari");
+	    nama_produk = scan.nextLine();
 		
-		if(produkList.isEmpty())
-		{
-			System.out.println("List Produk Kosong");
-			System.out.println("Tekan enter untuk lanjut..."); 
-			scan.nextLine();
-		}
-		
-		else
-		{
-			
-			for(int i=0; i < produkList.size(); i++)
-			{
-				System.out.println("ID Produk: " + produkList.get(i).getId_produk());
-				System.out.println("Nama Produk: " + produkList.get(i).getNama_produk());
-				System.out.println("Stok Produk: " + produkList.get(i).getStok_produk());
-				System.out.println("Harga Produk: " + produkList.get(i).getHarga_produk());
-				System.out.println("Tanggal Expired: " + produkList.get(i).getTanggal_expired());
-				System.out.println();
-			}
-		}
+	    String query = String.format("SELECT * FROM produk WHERE nama_produk = '%s'", nama_produk);
+	    
+	    if(query.contains(nama_produk)) {
+	    	System.out.println("Produk Tersedia");
+	    }else {
+	    	System.out.println("Produk Tidak Tersedia");
+	    }
 	}
 }
