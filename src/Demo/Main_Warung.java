@@ -150,35 +150,7 @@ public class Main_Warung {
         scan.close();
     }
     
-    //Lihat transaksi penjualan
-    public ArrayList<Penjualan_Warung> getPenjualan(){
-    	ArrayList<Penjualan_Warung> penjualan = new ArrayList<>();
-    	try {
-			String query = "SELECT `id_pelanggan`, `id_produk`, `jumlah_produk`, `tanggal_pembelian`"
-					+ "FROM `Penjualan`";
-			ResultSet res = Connect.getConnection().executeQuery(query);
-			String id_pelanggan, id_produk, tanggal_pembelian;
-			Integer jumlah_produk;
-			while(res.next()) {
-				id_pelanggan = res.getString("id_pelanggan");
-				id_produk = res.getString("id_produk");
-				jumlah_produk = res.getInt("jumlah_produk");
-				tanggal_pembelian = res.getString("tanggal_pembelian");
-				penjualan.add(new Penjualan_Warung(id_pelanggan, id_produk, jumlah_produk, tanggal_pembelian));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return penjualan;
-    }
-    
-    //tambah data penjualan
-    public void insertDataPenjualan(String id_pelanggan, String id_produk, Integer jumlah_produk, String tanggal_pembelian) {
-    	String query = String.format("INSERT INTO `Penjualan`(`id_pelanggan`, `id_produk`, `jumlah_produk`, `tanggal_pembelian`) "
-    			+ "VALUES ('%s','%s','%d','%s')", id_pelanggan, id_produk, jumlah_produk, tanggal_pembelian);
-    	Connect.getConnection().executeUpdate(query);
-    }
+  
     
     
 
