@@ -90,6 +90,8 @@ public class Produk_Warung {
 		int num2 = random.nextInt((max - min) + 1) + min;
 		int num3 = random.nextInt((max - min) + 1) + min;
 		
+		
+		
 		// P098
 		id = id + num1 + num2 + num3;
 		
@@ -252,7 +254,7 @@ public class Produk_Warung {
 			int i = 0;
 			for(Produk_Warung  produk : produkList)
 			{
-				System.out.printf("| %d | %s | %s | %d | %f1 | %s | \n", i+1, produk.getId_produk(), produk.getNama_produk(), produk.getStok_produk(), produk.getHarga_produk(), produk.getTanggal_expired());
+				System.out.printf("| %d | %s | %s | %d | %.2f | %s | \n", i+1, produk.getId_produk(), produk.getNama_produk(), produk.getStok_produk(), produk.getHarga_produk(), produk.getTanggal_expired());
 				i++;
 			}
 		}
