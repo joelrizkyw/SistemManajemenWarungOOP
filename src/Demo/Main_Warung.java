@@ -1,19 +1,15 @@
 package Demo;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 
-import Database.Connect;
+import Classes.Penjual_Warung;
 import Model.Pelanggan_Warung;
-import Model.Penjual_Warung;
 import Model.Produk_Warung;
 
 public class Main_Warung {
  
-	ArrayList<Pelanggan_Warung> pw = new ArrayList<>();
     Scanner scan = new Scanner(System.in);
-    Random r = new Random();
+    Pelanggan_Warung pelanggan = new Pelanggan_Warung();
     
 
 	public void showMenuUtama() {
@@ -116,77 +112,32 @@ public class Main_Warung {
         System.out.println("Log out penjual sukses !");
         System.out.println();
     }
-
-    public void showPembeliMenu() {
-
-    }
     
-    public void lihat_pembeli()
-    {
-    	int i = 0;
+    public void loginPembeli() {
     	
-    	load_pembeli();
-    	
-    	System.out.println("==============");
-    	System.out.println("LIST PEMBELI");
-    	System.out.println("==============");
-    	for (Pelanggan_Warung pw_var : pw) {
-    		System.out.println("No. " + (i+1));
-			System.out.println("ID Pembeli: " + pw_var.getId_pelanggan());
-			System.out.println("Nama pembeli: " + pw_var.getNama_pelanggan());
-			System.out.println("");
-			i++;
-		}
-    }
-    
-    public void load_pembeli()
-    {
-    	String id_pembeli, nama_pembeli;
-    	
-    	Connect c = Connect.getConnection();
-    	String query = "select * from pelanggan";
-    	ResultSet rs = c.executeQuery(query);
-    	
-    	try {
-			while(rs.next())
-			{
-				id_pembeli = rs.getString("id_pelanggan");
-				nama_pembeli = rs.getString("nama_pelanggan");
-				
-				pw.add(new Pelanggan_Warung(id_pembeli, nama_pembeli));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
-    
-    public void loginPembeli()
-    {
-    	String nama_pembeli;
+    	String id = "";
+    	String nama = "";
     	
     	do {
-			System.out.print("Masukkan nama: ");
-			nama_pembeli = scan.nextLine();
-		} while (nama_pembeli.length() <= 0);
+    		
+    		System.out.print("Input nama anda [4 - 20 karakter]: ");
+    		nama = scan.nextLine();
+    		
+    	} while(nama.length() < 4 || nama.length() > 20);
     	
-    	Connect c = Connect.getConnection();
-    	String query = String.format("insert into pelanggan values ('%s', '%s')", generate_pembeli_id(), nama_pembeli);
-    	c.executeUpdate(query);
+    	// input data ke database
+    	pelanggan.generateId();
+    	pelanggan.setNama_pelanggan(nama);
     	
-    	System.out.println("\n=============");
-    	System.out.println("Data anda:");
-    	System.out.println("=============");
-    	System.out.println("ID Pembeli: " + generate_pembeli_id());
-    	System.out.println("Nama: " + nama_pembeli);
+    	pelanggan.tambahPelanggan();
     	
-//    	lihat_pembeli();
+    	// showMenuPembeli
+    	System.out.println();
+    	System.out.println("Selamat datang, " + pelanggan.getNama_pelanggan());
+    	System.out.println("================");
     	
-    }
-    
-    public String generate_pembeli_id()
-    {
-    	return "K" + r.nextInt(9) + r.nextInt(9) + r.nextInt(9);
+    	System.out.println("1. ");
+    	
     }
 	
     public Main_Warung() {
@@ -209,7 +160,7 @@ public class Main_Warung {
                     break;
                 case 2:
     
-                    loginPembeli();
+                    showPembeliMenu();
                     break;
             }
             
