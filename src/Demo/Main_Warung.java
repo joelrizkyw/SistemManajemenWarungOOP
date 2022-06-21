@@ -88,10 +88,11 @@ public class Main_Warung {
 	        		produk.tambah_produk();
 	        		break;
 	        	case 2:
-	        		
+	        		System.out.println();
+	        		produk.edit_produk();
 	        		break;
 	        	case 3:
-	        		
+	        		produk.hapus_produk();
 	        		break;
 	        	case 4:
 	        		

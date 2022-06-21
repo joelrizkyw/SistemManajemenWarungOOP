@@ -6,6 +6,7 @@ import java.util.*;
 
 import Database.Connect;
 
+
 public class Produk_Warung {
 
 	ArrayList<Produk_Warung> produkList = new ArrayList<>();
@@ -139,14 +140,67 @@ public class Produk_Warung {
 	   setHarga_produk(harga_produk);
 	   setTanggal_expired(tanggal_expired);
 	   
+	   
+	   Produk_Warung produk = new Produk_Warung(generateId(), nama_produk, stok_produk, harga_produk, tanggal_expired);
+	   
+	   
 	   System.out.println();
 	   
 	   if(produkList.add(this)) {
-		   
 		   System.out.print("Produk Berhasil Ditambahkan");
 	   }
 	   
+	   Produk_Warung produk_Warung = new Produk_Warung(id_produk, nama_produk, stok_produk, harga_produk, tanggal_expired);
+	   produk_Warung.insert();
 	   System.out.println();
+	}
+	
+	public void insert() {
+		Connect con = Connect.getConnection();
+		
+		String query  = String.format(" INSERT INTO produk VALUES ('%s', '%s', '%d' , '%f', '%s' )", id_produk, nama_produk, stok_produk, harga_produk, tanggal_expired);
+		con.executeUpdate(query);
+	}
+	
+	public void edit_produk() {
+		String id_produk;
+		String nama_produk = null;
+		int stok_produk = 0;
+		float harga_produk = 0;
+		String tanggal_expired = null;
+		
+		setStok_produk(stok_produk);
+		setHarga_produk(harga_produk);
+		
+		System.out.println("Input ID produk yang diubah");
+		id_produk = scan.nextLine();
+		
+		System.out.println("Input nama produk yang diubah");
+		nama_produk = scan.nextLine();
+		
+		System.out.println("Input stok produk yang diubah");
+		stok_produk = scan.nextInt();
+		
+		System.out.println("Input harga produk yang diubah");
+		harga_produk = scan.nextFloat();
+		
+		System.out.println("Input tanggal expired produk yang diubah");
+		tanggal_expired = scan.nextLine();
+		
+		String query = String.format("UPDATE produk '%s', '%s', '%d', '%f', '%s' WHERE id produk = '%s'", id_produk, nama_produk, stok_produk, harga_produk, tanggal_expired, id_produk);
+	}
+	
+	public void hapus_produk() {
+		String id_produk;
+		System.out.println("Input Id Produk: ");
+		id_produk = scan.nextLine();
+		
+		Connect con = Connect.getConnection();
+		String query = String.format("DELETE FROM produk WHERE Tid_produk = '%s'", id_produk);
+		con.executeUpdate(query);
+		
+		System.out.println("Produk berhasil dihapus");
+		
 	}
 	
 	public void load_produk()
@@ -199,9 +253,11 @@ public class Produk_Warung {
 			for(Produk_Warung  produk : produkList)
 			{
 				System.out.printf("| %d | %s | %s | %d | %f1 | %s | \n", i+1, produk.getId_produk(), produk.getNama_produk(), produk.getStok_produk(), produk.getHarga_produk(), produk.getTanggal_expired());
+				i++;
 			}
 		}
 	}	
+	
 	
 	public void lihat_penjual()
 	{
