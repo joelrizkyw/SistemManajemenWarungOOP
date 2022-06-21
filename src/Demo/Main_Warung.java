@@ -2,12 +2,14 @@ package Demo;
 
 import java.util.*;
 
-import Model.Penjual_Warung;
+import Classes.Penjual_Warung;
+import Model.Pelanggan_Warung;
 import Model.Produk_Warung;
 
 public class Main_Warung {
  
     Scanner scan = new Scanner(System.in);
+    Pelanggan_Warung pelanggan = new Pelanggan_Warung();
     
 
 	public void showMenuUtama() {
@@ -110,9 +112,32 @@ public class Main_Warung {
         System.out.println("Log out penjual sukses !");
         System.out.println();
     }
-
-    public void showPembeliMenu() {
-
+    
+    public void loginPembeli() {
+    	
+    	String id = "";
+    	String nama = "";
+    	
+    	do {
+    		
+    		System.out.print("Input nama anda [4 - 20 karakter]: ");
+    		nama = scan.nextLine();
+    		
+    	} while(nama.length() < 4 || nama.length() > 20);
+    	
+    	// input data ke database
+    	pelanggan.generateId();
+    	pelanggan.setNama_pelanggan(nama);
+    	
+    	pelanggan.tambahPelanggan();
+    	
+    	// showMenuPembeli
+    	System.out.println();
+    	System.out.println("Selamat datang, " + pelanggan.getNama_pelanggan());
+    	System.out.println("================");
+    	
+    	System.out.println("1. ");
+    	
     }
 	
     public Main_Warung() {
@@ -135,7 +160,7 @@ public class Main_Warung {
                     break;
                 case 2:
     
-                    //loginPembeli();
+                    showPembeliMenu();
                     break;
             }
             

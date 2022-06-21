@@ -1,6 +1,10 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
+
+import Database.Connect;
 
 public class Produk_Warung {
 
@@ -10,7 +14,7 @@ public class Produk_Warung {
 	private String id_produk;
 	private String nama_produk;
 	private int stok_produk;
-	private float harga_produk;
+	private double harga_produk;
 	private String tanggal_expired;
 
 	public ArrayList<Produk_Warung> getProdukList() {
@@ -45,11 +49,11 @@ public class Produk_Warung {
 		this.stok_produk = stok_produk;
 	}
 
-	public float getHarga_produk() {
+	public double getHarga_produk() {
 		return harga_produk;
 	}
 
-	public void setHarga_produk(float harga_produk) {
+	public void setHarga_produk(double harga_produk) {
 		this.harga_produk = harga_produk;
 	}
 
@@ -159,5 +163,37 @@ public class Produk_Warung {
 				System.out.println();
 			}
 		}
+	}
+
+	public static Produk_Warung getDataProduk(String id_produk) {
+		// TODO Auto-generated method stub
+		
+		Produk_Warung produk = new Produk_Warung();
+		
+		Connect con = Connect.getConnection();
+		String query = String.format("SELECT * FROM produk WHERE id_produk = '?'", id_produk);
+		ResultSet rs = con.executeQuery(query);
+		
+		try {
+			
+			while(rs.next()) {
+				
+				produk.setId_produk(rs.getString("id_produk"));
+				produk.setNama_produk(rs.getString("nama_produk"));
+				produk.setStok_produk(rs.getInt("stok_produk"));
+				produk.setHarga_produk(rs.getDouble("harga_produk"));
+				produk.setTanggal_expired(rs.getString("tanggal_expired"));
+				
+			}
+			
+			return produk;
+		}
+		
+		catch(SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return null;
 	}	
 }
