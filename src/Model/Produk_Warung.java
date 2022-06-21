@@ -1,11 +1,16 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
+
+import Database.Connect;
 
 public class Produk_Warung {
 
 	ArrayList<Produk_Warung> produkList = new ArrayList<>();
 	Scanner scan = new Scanner(System.in);
+	Connect con = Connect.getConnection();
 
 	private String id_produk;
 	private String nama_produk;
@@ -133,10 +138,63 @@ public class Produk_Warung {
 	   System.out.println();
 	}
 	
+	public void load_produk()
+	{
+		String id_produk;
+		String nama_produk;
+		int stok_produk;
+		float harga_produk;
+		String tanggal_expired; 
+		
+		String query = "SELECT * FROM produk";
+		
+		Connect con = Connect.getConnection();
+    	ResultSet rs = con.executeQuery(query);
+    	
+    	try {
+    		while(rs.next()) {
+    			id_produk = rs.getString("id_produk");
+    		    nama_produk = rs.getString("nama_produk");
+    		    stok_produk = rs.getInt("stok_produk");
+    		    harga_produk = rs.getFloat("harga_produk");
+    		    tanggal_expired = rs.getString("tanggal_expired");
+    		    
+    		    produkList.add(new Produk_Warung());
+    		}
+    		}catch (SQLException e) {
+    	    	e.printStackTrace();
+    	}
+	}
+	
 	public void lihat_produk()
 	{
 		
+		
+		
 		System.out.println("Lihat Produk");
+	    System.out.println("=================================================================================");
+	    System.out.println("| No | ID produk | Nama Produk | Stok Produk | Harga Produk | Tanggal Expired |");
+		
+		if(produkList.isEmpty())
+		{
+			System.out.println("List Produk Kosong");
+			System.out.println("Tekan enter untuk lanjut..."); 
+			scan.nextLine();
+		}
+		
+		else
+		{
+			int i = 0;
+			for(Produk_Warung  produk : produkList)
+			{
+				System.out.printf("| %d | %s | %s | %d | %f1 | %s |", i+1, produk.getId_produk(), produk.getNama_produk(), produk.getStok_produk(), produk.getHarga_produk(), produk.getTanggal_expired());
+			}
+		}
+	}	
+	
+	public void lihat_penjual()
+	{
+		System.out.println("Lihat Penjualan");
 	    System.out.println("===========================");
 		
 		if(produkList.isEmpty())
@@ -159,5 +217,5 @@ public class Produk_Warung {
 				System.out.println();
 			}
 		}
-	}	
+	}
 }

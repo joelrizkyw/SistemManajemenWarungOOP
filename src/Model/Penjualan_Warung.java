@@ -1,7 +1,10 @@
 package Model;
 
+import java.util.ArrayList;
 
 public class Penjualan_Warung {
+	
+	ArrayList<Penjualan_Warung> penjualanList = new ArrayList<>();
 	
 	private String id_pelanggan, id_produk, tgl_pembelian;
 	private int jumlah_produk;
@@ -15,6 +18,7 @@ public class Penjualan_Warung {
 		this.id_pelanggan = id_pelanggan;
 		this.id_produk = id_produk;
 		this.jumlah_produk = jumlah_produk;
+		this.tgl_pembelian = tgl_pembelian;
 	}
 
 	public String getId_pelanggan() {
@@ -41,6 +45,12 @@ public class Penjualan_Warung {
 		this.jumlah_produk = jumlah_produk;
 	}
 	
-	
+	public String gettgl_pembelian() {
+		return tgl_pembelian;
+	}
+
+	public void settgl_pembelian(String tgl_pembelian) {
+		this.tgl_pembelian = tgl_pembelian;
+	}
 
 }

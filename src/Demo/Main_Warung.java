@@ -4,11 +4,12 @@ import java.util.*;
 
 import Model.Penjual_Warung;
 import Model.Produk_Warung;
+import Database.Connect;
 
 public class Main_Warung {
  
     Scanner scan = new Scanner(System.in);
-    
+    Connect con = Connect.getConnection();
 
 	public void showMenuUtama() {
 
