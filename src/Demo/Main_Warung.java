@@ -29,7 +29,7 @@ public class Main_Warung {
         System.out.println("2. Edit Produk");
         System.out.println("3. Hapus Produk");
         System.out.println("4. Lihat Produk");
-        System.out.println("5. Lihat Penjualan");
+        System.out.println("5. Cari Produk");
         System.out.println("6. Log Out Penjual");
         System.out.print(">> ");
     }
@@ -100,7 +100,8 @@ public class Main_Warung {
 	        		produk.lihat_produk();
 	        		break;
 	        	case 5:
-	        		
+	        		System.out.println();
+	        		produk.cari_produk();
 	        		
 	        		break;
         	}
